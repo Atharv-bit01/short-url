@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analytics — Shorty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M6.5 11h9M11 6.5l4.5 4.5L11 15.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">Giggling Platypus Co.</span>
+    </div>
+    <a href="index.html" class="topbar-label topbar-link">← Shorty</a>
+  </header>
+
+  <main class="stage">
+
+    <div class="analytics-loading" id="analytics-loading">
+      <p>Pulling up the activity…</p>
+    </div>
+
+    <div class="analytics-empty-state" id="analytics-no-id" hidden>
+      <h1>No link selected</h1>
+      <p>Shorten a link first, then come back here to see how it's doing.</p>
+      <a href="index.html" class="back-link">Go shorten a link →</a>
+    </div>
+
+    <div class="analytics-error-state" id="analytics-error" hidden>
+      <h1>Couldn't find that link</h1>
+      <p id="analytics-error-msg">It may have been mistyped, or doesn't exist.</p>
+      <a href="index.html" class="back-link">Go shorten a link →</a>
+    </div>
+
+    <section class="analytics-content" id="analytics-content" hidden>
+
+      <div class="analytics-header">
+        <span class="stub-label">Tracking</span>
+        <a id="analytics-short-link" href="#" target="_blank" rel="noopener" class="analytics-short-link"></a>
+      </div>
+
+      <div class="analytics-summary">
+        <div class="big-number-block">
+          <span class="big-number" id="total-clicks">0</span>
+          <span class="big-number-label">total clicks</span>
+        </div>
+      </div>
+
+      <div class="ticket-roll" id="ticket-roll">
+        <div class="ticket-roll-header">
+          <span class="stub-label">Visit log</span>
+        </div>
+        <ol class="ticket-list" id="ticket-list"></ol>
+      </div>
+
+      <div class="analytics-empty-log" id="analytics-empty-log" hidden>
+        <p>No clicks yet — share the link to see activity here.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="foot-note">
+    <span>No accounts. No tracking dashboards. Just shorter links.</span>
+  </footer>
+
+  <script src="analytics.js"></script>
+</body>
+</html>

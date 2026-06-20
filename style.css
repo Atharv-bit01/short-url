@@ -1,0 +1,548 @@
+:root{
+  --ink: #0A0A0A;
+  --paper: #FAFAF8;
+  --mid: #6B6B6B;
+  --hairline: #D8D6D1;
+  --hairline-strong: #B8B5AE;
+  --radius: 2px;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px clamp(20px, 6vw, 64px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark{
+  display: inline-flex;
+  color: var(--ink);
+}
+
+.brand-name{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+.topbar-label{
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--mid);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--hairline-strong);
+  padding: 4px 10px;
+  border-radius: var(--radius);
+}
+
+/* ---------- Stage ---------- */
+
+.stage{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(40px, 8vh, 96px) 20px 60px;
+}
+
+.intro{
+  text-align: center;
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+
+.intro h1{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.05;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.intro p{
+  font-size: 15px;
+  color: var(--mid);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- Shorten card ---------- */
+
+.shorten-card{
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 22px;
+  background: var(--paper);
+}
+
+.field-label{
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.input-row{
+  display: flex;
+  gap: 10px;
+}
+
+#url-input{
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 13px 14px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  min-width: 0;
+}
+
+#url-input::placeholder{
+  color: #ABA8A1;
+}
+
+#url-input:focus{
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+#submit-btn{
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 0 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+#submit-btn:hover{ opacity: 0.85; }
+#submit-btn:active{ opacity: 0.7; }
+
+#submit-btn:focus-visible,
+#url-input:focus-visible,
+#copy-btn:focus-visible,
+#download-qr-btn:focus-visible{
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+#submit-btn[disabled]{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.field-error{
+  margin: 10px 2px 0;
+  font-size: 13px;
+  color: var(--ink);
+  border-left: 2px solid var(--ink);
+  padding-left: 8px;
+}
+
+/* ---------- Result stub (signature element) ---------- */
+
+.result-stub{
+  width: 100%;
+  max-width: 560px;
+  margin-top: 22px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  overflow: hidden;
+  animation: stub-in 0.32s ease;
+}
+
+@keyframes stub-in{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .result-stub{ animation: none; }
+}
+
+.stub-top{
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stub-row{ display: flex; flex-direction: column; gap: 6px; }
+
+.stub-label{
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.stub-link-line{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#short-link{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  word-break: break-all;
+}
+
+#copy-btn, #download-qr-btn{
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+#copy-btn:hover, #download-qr-btn:hover{
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+#copy-btn.copied{
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.original-text{
+  margin: 0;
+  font-size: 13px;
+  color: var(--mid);
+  word-break: break-all;
+}
+
+/* Perforated tear between stub halves */
+.perforation{
+  position: relative;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--hairline-strong) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+.perforation::before,
+.perforation::after{
+  content: "";
+  position: absolute;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  background: var(--paper);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+}
+
+.perforation::before{ left: -8px; }
+.perforation::after{ right: -8px; }
+
+.stub-bottom{
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#qr-canvas-wrap{
+  flex-shrink: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 8px;
+  display: flex;
+}
+
+#qr-canvas-wrap img,
+#qr-canvas-wrap canvas{
+  display: block;
+  image-rendering: pixelated;
+}
+
+.qr-actions{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.analytics-link{
+  font-size: 13px;
+  color: var(--mid);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.analytics-link:hover{
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* ---------- Status & footer ---------- */
+
+.status-line{
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--mid);
+  min-height: 18px;
+}
+
+.foot-note{
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  color: var(--mid);
+  border-top: 1px solid var(--hairline);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px){
+  .input-row{
+    flex-direction: column;
+  }
+  #submit-btn{
+    padding: 13px 22px;
+  }
+  .stub-link-line{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #short-link{ font-size: 17px; }
+  .stub-bottom{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Topbar link variant (analytics page) ---------- */
+
+.topbar-link{
+  text-decoration: none;
+  color: var(--mid);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.topbar-link:hover{
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ---------- Analytics page states ---------- */
+
+.analytics-loading,
+.analytics-empty-state,
+.analytics-error-state{
+  text-align: center;
+  max-width: 440px;
+  padding-top: 12px;
+}
+
+.analytics-loading p{
+  color: var(--mid);
+  font-size: 14px;
+}
+
+.analytics-empty-state h1,
+.analytics-error-state h1{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.analytics-empty-state p,
+.analytics-error-state p{
+  color: var(--mid);
+  font-size: 14px;
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.back-link{
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+}
+
+/* ---------- Analytics content ---------- */
+
+.analytics-content{
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.analytics-header{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.analytics-short-link{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  word-break: break-all;
+  align-self: flex-start;
+}
+
+.analytics-summary{
+  display: flex;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 26px 22px;
+}
+
+.big-number-block{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.big-number{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.big-number-label{
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* Ticket roll: sequential visit log */
+
+.ticket-roll{
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ticket-roll-header{
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.ticket-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.ticket-row{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px dashed var(--hairline);
+  font-size: 14px;
+}
+
+.ticket-row:last-child{
+  border-bottom: none;
+}
+
+.ticket-number{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--mid);
+  min-width: 28px;
+}
+
+.ticket-time{
+  color: var(--ink);
+}
+
+.analytics-empty-log{
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+
+.analytics-empty-log p{
+  margin: 0;
+  color: var(--mid);
+  font-size: 14px;
+}
+
+@media (max-width: 480px){
+  .big-number{ font-size: 42px; }
+  .analytics-short-link{ font-size: 17px; }
+}

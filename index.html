@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shorty — Atharv's ORCA Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M6.5 11h9M11 6.5l4.5 4.5L11 15.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">ORCA Co.<br>by ATHARV</span>
+    </div>
+    <span class="topbar-label">Shorty</span>
+  </header>
+
+  <main class="stage">
+    <section class="intro">
+      <h1>Make it short.</h1>
+      <p>Drop in a link. Get a short one and a code to scan, on the spot.</p>
+    </section>
+
+    <form class="shorten-card" id="shorten-form">
+      <label for="url-input" class="field-label">Long URL</label>
+      <div class="input-row">
+        <input
+          type="url"
+          id="url-input"
+          name="url"
+          placeholder="https://example.com/a/very/long/path"
+          required
+          autocomplete="off"
+        />
+        <button type="submit" id="submit-btn">
+          <span class="btn-text">Shorten</span>
+        </button>
+      </div>
+      <p class="field-error" id="field-error" role="alert" hidden></p>
+    </form>
+
+    <section class="result-stub" id="result-stub" hidden>
+      <div class="stub-top">
+        <div class="stub-row">
+          <span class="stub-label">Short link</span>
+          <div class="stub-link-line">
+            <a id="short-link" href="#" target="_blank" rel="noopener"></a>
+            <button type="button" id="copy-btn" aria-label="Copy short link">Copy</button>
+          </div>
+        </div>
+        <div class="stub-row">
+          <span class="stub-label">Original</span>
+          <p id="original-link" class="original-text"></p>
+        </div>
+      </div>
+
+      <div class="perforation" aria-hidden="true"></div>
+
+      <div class="stub-bottom">
+        <div id="qr-canvas-wrap"></div>
+        <div class="qr-actions">
+          <span class="stub-label">Scan it</span>
+          <button type="button" id="download-qr-btn">Download QR</button>
+          <a id="analytics-link" class="analytics-link" href="#">View analytics →</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="status-line" id="status-line" aria-live="polite"></p>
+  </main>
+
+  <footer class="foot-note">
+    <span>No accounts. No tracking dashboards. Just shorter links.</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
