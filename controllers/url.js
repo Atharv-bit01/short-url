@@ -13,7 +13,7 @@ async function handlegeneratenewshortURL(req,res){
 
     return res.json(
         {
-            shortUrl: `http://localhost:8001/${shortID}`
+            shortUrl: `${process.env.BASE_URL}/${shortID}`
         }
     );
 

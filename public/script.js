@@ -110,6 +110,11 @@ async function handleSubmit(e) {
   } finally {
     setLoading(false);
   }
+  localStorage.setItem("shorty-last-result", JSON.stringify({
+  shortUrl,
+  originalUrl: rawUrl,
+  shortId
+}));
 }
 
 async function handleCopy() {
@@ -130,3 +135,24 @@ async function handleCopy() {
 form.addEventListener("submit", handleSubmit);
 copyBtn.addEventListener("click", handleCopy);
 downloadBtn.addEventListener("click", downloadQR);
+function restoreLastResult() {
+  const saved = localStorage.getItem("shorty-last-result");
+  if (!saved) return;
+
+  try {
+    const { shortUrl, originalUrl, shortId } = JSON.parse(saved);
+
+    shortLinkEl.textContent = shortUrl;
+    shortLinkEl.href = shortUrl;
+    originalLinkEl.textContent = originalUrl;
+
+    renderQR(shortUrl);
+    analyticsLink.href = `analytics.html?id=${encodeURIComponent(shortId)}`;
+
+    resultStub.hidden = false;
+  } catch {
+    localStorage.removeItem("shorty-last-result");
+  }
+}
+
+restoreLastResult();
