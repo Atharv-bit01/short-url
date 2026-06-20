@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8001";
+const API_BASE = "";
 
 const form = document.getElementById("shorten-form");
 const urlInput = document.getElementById("url-input");
